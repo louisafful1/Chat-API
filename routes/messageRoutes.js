@@ -1,8 +1,16 @@
 import express from "express";
-const router = express.Router();
-import { sendMessage } from "../controllers/messageControllers.js";
+const chatRouter = express.Router();
+import { sendMessage, getAllMessages, getAMessage, updateMessage, deleteMessage} from "../controllers/messageControllers.js";
 
+// Routes
+chatRouter.post("/", sendMessage)
 
-router.get("/", sendMessage)
+chatRouter.get("/", getAllMessages)
 
-export default router
+chatRouter.get("/:id", getAMessage)
+
+chatRouter.patch("/:id", updateMessage)
+
+chatRouter.delete("/:id", deleteMessage)
+
+export default chatRouter

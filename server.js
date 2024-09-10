@@ -3,25 +3,35 @@ import dotenv from "dotenv"
 import mongoose from "mongoose"
 import messageRoutes from "./routes/messageRoutes.js";
 import errorHandler from "./middleware/errorMiddleware.js";
-
-const app = express();
 dotenv.config();
+const chatapp = express();
 
-// middleware
-app.use(express.json())
+// middlewares
+chatapp.use(express.json()); 
+chatapp.use(express.urlencoded({extended: true}))
 
-// Routes
-app.use("/api/messages", messageRoutes)
+// Route
+chatapp.use("/api/messages", messageRoutes)
 
-app.use(errorHandler)
+//Error handler
+chatapp.use(errorHandler)
 
+//Port
 const PORT = process.env.PORT || 5000
+
+//Database connection
 mongoose
 .connect(process.env.MONGO_URI)
-.then(
-    app.listen(PORT, () => {console.log(`Server running on port ${PORT}`)})
+.then(() =>{
+    chatapp.listen(PORT, () => {
+        console.log(`Server running on port ${PORT}`)
+    })
+})
+.catch((error) => {
+console.error(error)
+process.exit(1)
+}
 )
-.catch((error) => console.log(error))
 
 
 

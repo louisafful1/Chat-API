@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 
-const messageSchema = mongoose.Schema({
+const messageSchema = mongoose.Schema(
+    {
     message: {
         type: String,
         required: [true, "Please Enter a message"],
