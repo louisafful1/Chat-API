@@ -1,7 +1,7 @@
 import express from "express"
 import dotenv from "dotenv"
 import mongoose from "mongoose"
-import messageRoutes from "./routes/messageRoutes.js";
+import messageRoutes from "./routes/chatRoutes.js";
 import errorHandler from "./middleware/errorMiddleware.js";
 dotenv.config();
 const chatapp = express();
