@@ -2,7 +2,7 @@ import express from "express"
 import dotenv from "dotenv"
 import mongoose from "mongoose"
 import cookieParser from "cookie-parser"
-import messageRoutes from "./routes/messageRoutes.js";
+import chatRouter from "./routes/chatRoutes.js";
 import {notFound,errorHandler} from "./middleware/errorMiddleware.js";
 import userRouter from "./routes/userRoute.js";
 dotenv.config();
@@ -14,7 +14,7 @@ chatapp.use(express.urlencoded({extended: true}))
 chatapp.use(cookieParser())
 
 // Routes
-chatapp.use("/api/messages", messageRoutes)
+chatapp.use("/api/messages", chatRouter)
 chatapp.use("/api/users", userRouter)
 
 //Error handler
